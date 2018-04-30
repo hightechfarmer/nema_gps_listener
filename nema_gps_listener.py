@@ -25,5 +25,10 @@ def udp_server(host='0.0.0.0', port=8000):
         yield parse_nema(data)
 
 
-for data in udp_server():
-    logging.debug("%r" % (data,))
+def main():
+    for data in udp_server():
+        logging.debug("%r" % (data,))
+
+
+if __name__ == "__main__":
+    main()
