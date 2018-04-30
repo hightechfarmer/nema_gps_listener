@@ -2,7 +2,7 @@ import logging
 import socket
 import pynmea2
 
-logging.basicConfig(filename='udp.log', level=logging.DEBUG)
+logging.basicConfig(filename='nema_gps_listener.log', level=logging.DEBUG)
 
 
 def parse_nema(msg):
@@ -43,12 +43,11 @@ def main():
         if data:
 
             try:
-
                 thedate = "{} {}".format(data.datestamp.strftime("%Y-%m-%d"), data.timestamp.strftime("%H:%M:%S"))
                 output = "{} nema payload: {}".format(thedate, data)
                 logging.debug(output)
 
-                location = "{}, {}".format(data.lat, data.lon)
+                location = "{}, {}".format(data.latitude, data.longitude)
                 update_coordinates_file(location)
 
             except Exception as e:
